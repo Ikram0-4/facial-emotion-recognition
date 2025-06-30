@@ -12,12 +12,3 @@ OpenCV pour la détection faciale
 PyTorch pour l’entraînement du modèle (CNN / ResNet18)
 
 FER2013 comme base de données d'entraînement
-
-Cas d’usage :
-Interfaces utilisateurs adaptatives (UI qui change selon l’émotion)
-
-Outils pour les enseignants en ligne (suivi émotionnel des élèves)
-
-Applications RH (analyse émotionnelle lors d’entretiens à distance)
-
-Ce projet est destiné à illustrer l’application concrète de l’intelligence artificielle dans le domaine de la perception humaine.
