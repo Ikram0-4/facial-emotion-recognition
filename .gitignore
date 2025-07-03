@@ -1,7 +1,4 @@
 
 # Ignore tous les fichiers dans data sauf .gitkeep
-data/*
-!data/.gitkeep
 
-models/*
-!models/.gitkeep
+*.gitkeep
