@@ -1,6 +1,4 @@
-torch
+tensorflow
+pandas
+pytorch
 torchvision
-opencv-python
-numpy
-matplotlib
-jupyter

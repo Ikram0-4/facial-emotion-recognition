@@ -1,4 +1,5 @@
-
-# Ignore tous les fichiers dans data sauf .gitkeep
-
 *.gitkeep
+.vscode
+
+## my venv
+/facial_recognition  
