@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from extract_data import create_dataframe
+from extract_data import create_dataframe, create_TensorDataset
 
 
 
@@ -9,8 +9,8 @@ from extract_data import create_dataframe
 
 def training_cnn():
     
-    input_tensor = torch.randn(1, 16, 48, 48)
-
+    #input_tensor = torch.randn(1, 16, 48, 48)
+    #batch_3c = batch.repeat(1, 3, 1, 1)
     conv_layer = nn.Conv2d(
         in_channels=3,     # nombre de canaux en entrée (ex : 3 pour une image RGB)
         out_channels=16,   # nombre de filtres (ce que tu veux produire pour caractèriser les images)
