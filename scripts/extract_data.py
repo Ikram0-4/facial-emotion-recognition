@@ -45,13 +45,11 @@ def convert_image_into_vectors(list_files: List[str])-> List[str]:
     return list_loaded_images
 
 
-def create_dataframe(liste_emotions: List[str], image_path : List[str], image : List[str] ) -> pd.DataFrame:
+def create_dataframe(list_emotions: List[str], image_path : List[str], image : List[str] ) -> pd.DataFrame:
     
-    df = pd.DataFrame({'trueLabel': liste_emotions, 'filename': image_path, 'Tensor':image })
+    df = pd.DataFrame({'trueLabel': list_emotions, 'filename': image_path, 'Tensor':image })
     one_hot = pd.get_dummies(df['trueLabel'])
-    df_final = pd.concat([df, one_hot], axis=1)
-    #print(df_final.head())
-    return df_final
+    return pd.concat([df, one_hot], axis=1)
 
 
 
@@ -74,25 +72,25 @@ def create_TensorDataset(dataframe : pd.DataFrame):
     
 
 def create_batch(dataset):
-     
+    
     return DataLoader(dataset, batch_size=32, shuffle=True)
 
-def main():
+def get_train_batches() -> DataLoader:
     
     files = glob.glob("../data/train/**/*jpg", recursive=True)
-    liste_emotions , liste_files, list_image = get_files(files)
+    list_emotions , list_files, list_image = get_files(files)
     images = convert_image_into_vectors(list_image)
-    dataframe = create_dataframe(liste_emotions, liste_files, images)
+    dataframe = create_dataframe(list_emotions, list_files, images)
     data_tensors = create_TensorDataset(dataframe)
-    batches = create_batch(data_tensors)
+    return create_batch(data_tensors)
+    
 
-
-    for i, (images_batch, labels_batch) in enumerate(batches):
-        print(f"Batch {i + 1}")
-        print(f"Images shape: {images_batch.shape}")
-        print(f"Labels: {labels_batch}")
-        break
+    # for i, (images_batch, labels_batch) in enumerate(batches):
+    #     print(f"Batch {i + 1}")
+    #     print(f"Images shape: {images_batch.shape}")
+    #     print(f"Labels: {labels_batch}")
+    #     break
  
     
 if __name__ == "__main__":
-    main()
+    get_train_batches()

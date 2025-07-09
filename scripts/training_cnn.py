@@ -1,25 +1,33 @@
 import torch
 import torch.nn as nn
 from extract_data import create_dataframe, create_TensorDataset
+from extract_data import get_train_batches
+from torch.utils.data import DataLoader 
 
 
 
-
-
-
-def training_cnn():
+def training_cnn(batches: DataLoader):
     
-    #input_tensor = torch.randn(1, 16, 48, 48)
-    #batch_3c = batch.repeat(1, 3, 1, 1)
     conv_layer = nn.Conv2d(
-        in_channels=3,     # nombre de canaux en entrée (ex : 3 pour une image RGB)
-        out_channels=16,   # nombre de filtres (ce que tu veux produire pour caractèriser les images)
+        in_channels=3,
+        out_channels=16,
         kernel_size=3,
-        padding=1     # taille du filtre (ex : 3x3)
+        padding=1
     )
 
-    output = conv_layer(input_tensor)
+    for batch in batches:
+        images, labels = batch
+
+        ## duplicate 1 image canal in 3 canals
+        images = images.repeat(1, 3, 1, 1)
+        output = conv_layer(images)
+        
+        print(f"Input: {images.shape}, Output: {output.shape}")
+        break 
+
     return output
+    
+      
 
     # dataset = 
 
@@ -29,4 +37,4 @@ def training_cnn():
     #            worker_init_fn=None, *, prefetch_factor=2,
     #            persistent_workers=False)
 
-print(training_cnn())
+training_cnn(get_train_batches())
