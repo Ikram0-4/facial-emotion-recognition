@@ -1,4 +1,4 @@
 tensorflow
 pandas
-pytorch
+torch
 torchvision
